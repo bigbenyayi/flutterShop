@@ -17,7 +17,9 @@ class ProductItem extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             Navigator.of(context).pushNamed(
-              ProductDetailScreen.routeName, arguments: id,)
+              ProductDetailScreen.routeName,
+              arguments: id,
+            );
           },
           child: Image.network(
             imageUrl,
@@ -28,9 +30,7 @@ class ProductItem extends StatelessWidget {
           backgroundColor: Colors.black87,
           leading: IconButton(
             icon: Icon(Icons.favorite),
-            color: Theme
-                .of(context)
-                .accentColor,
+            color: Theme.of(context).accentColor,
             onPressed: null,
           ),
           title: Text(
@@ -39,9 +39,7 @@ class ProductItem extends StatelessWidget {
           ),
           trailing: IconButton(
             icon: Icon(Icons.shopping_cart),
-            color: Theme
-                .of(context)
-                .accentColor,
+            color: Theme.of(context).accentColor,
             onPressed: null,
           ),
         ),
