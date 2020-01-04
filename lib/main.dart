@@ -8,6 +8,7 @@ import 'package:flutter_shop/screens/product_detail_screen.dart';
 
 import './screens/products_overview_screen.dart';
 import './providers/products.dart';
+import './providers/orders.dart';
 import 'package:provider/provider.dart';
 import './screens/orders_screen.dart';
 import './screens/user_products_screen.dart';
@@ -23,14 +24,21 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: Auth(),
         ),
-        ChangeNotifierProvider.value(
-          value: Products(),
+        ChangeNotifierProxyProvider<Auth, Products>(
+          builder: (ctx, auth, previousProducts) => Products(
+            auth.token,
+            auth.userId,
+            previousProducts == null ? [] : previousProducts.items,
+          ),
         ),
         ChangeNotifierProvider.value(
           value: Cart(),
         ),
-        ChangeNotifierProvider.value(
-          value: Orders(),
+        ChangeNotifierProxyProvider<Auth, Orders>(
+          builder: (ctx, auth, previousOrder) => Orders(
+            auth.token,
+            previousOrder == null ? [] : previousOrder.orders,
+          ),
         ),
       ],
       child: Consumer<Auth>(
