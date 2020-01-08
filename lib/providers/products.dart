@@ -87,7 +87,7 @@ class Products with ChangeNotifier {
         return;
       }
       url =
-          "https://flutter-shop-course-e42a2.firebaseio.com/userFavorites/$userId.json?auth=$authToken";
+          'https://flutter-shop-course-e42a2.firebaseio.com/userFavorites/$userId.json?auth="$authToken"';
       final favoriteResponse = await http.get(url);
       final favoriteData = json.decode(favoriteResponse.body);
       extractedData.forEach((prodId, prodData) {
